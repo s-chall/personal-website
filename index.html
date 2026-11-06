@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sid’s personal website.">
+<title>Sid</title>
+<link rel="icon" href="data:,">
+<style>
+:root { color-scheme: light; --background: #fff; --foreground: #262626; --muted: #737373; --accent: #c653c6; --photo: #f5f5f5; }
+:root[data-theme="dark"] { color-scheme: dark; --background: #171717; --foreground: #e5e5e5; --muted: #a3a3a3; --accent: #d887d8; --photo: #262626; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--background); color: var(--foreground); font: 300 16px/24px "Iowan Old Style BT", Georgia, serif; }
+.container { width: 100%; max-width: 768px; margin: 0 auto; padding: 0 24px; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 24px; }
+.nav-links { display: flex; gap: 32px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.nav-links a { color: var(--foreground); }
+.nav-links a[aria-current="page"] { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.theme-toggle { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 3px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+.theme-toggle:hover { color: var(--accent); }
+.theme-toggle svg { width: 19px; height: 19px; }
+main { flex: 1; }
+.page { padding-top: 48px; }
+.page[hidden] { display: none; }
+h1 { font-size: 36px; line-height: 40px; font-weight: 300; margin: 0 0 16px; }
+h1 strong { font-weight: 700; }
+h2 { font-size: 30px; line-height: 36px; font-weight: 300; margin: 0 0 24px; }
+p { margin: 0 0 16px; }
+.intro-header { margin-bottom: 16px; }
+.intro-header p { margin: 0; }
+.profile { width: 224px; float: right; margin: 0 0 24px 24px; }
+.photo-placeholder { display: flex; justify-content: center; align-items: center; width: 224px; height: 224px; background: var(--photo); color: var(--muted); }
+.bio { min-height: 264px; }
+.placeholder { color: var(--muted); }
+.teams { clear: both; padding-top: 24px; padding-bottom: 32px; }
+.team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+.team { margin: 0; }
+.team-photo { aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; background: var(--photo); color: var(--muted); padding: 24px; text-align: center; }
+.team figcaption { margin-top: 12px; }
+.team figcaption p { margin: 4px 0 0; }
+.team-caption { color: var(--muted); font-size: 14px; line-height: 21px; }
+@media (max-width: 599px) { .team-grid { grid-template-columns: 1fr; } }
+.latest { clear: both; padding-top: 24px; padding-bottom: 24px; }
+footer { padding: 32px 24px; margin-top: 64px; text-align: center; color: var(--muted); font-size: 14px; line-height: 20px; }
+footer p { margin: 0; }
+.no-js .page + .page { margin-top: 48px; }
+@media (max-width: 599px) { .profile { float: none; margin: 0 0 24px; } .page { padding-top: 32px; } .bio { min-height: 0; } .nav-links { gap: 24px; } }
+</style>
+</head>
+<body class="no-js">
+<header class="container">
+<nav aria-label="Main navigation">
+<div class="nav-links"><a href="#about" aria-current="page">about</a><a href="#blog">blog</a><a href="#projects">projects</a></div>
+<button class="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+</button>
+</nav>
+</header>
+<main class="container">
+<section id="about" class="page" aria-labelledby="about-title">
+<header class="intro-header"><h1 id="about-title"><strong>Sid</strong></h1><p class="placeholder">[Your one-line introduction]</p></header>
+<aside class="profile" aria-label="Profile photo placeholder"><div class="photo-placeholder">[Your photo]</div></aside>
+<div class="bio"><p class="placeholder">[Your bio: what you do, what you’re interested in, and anything you’d like visitors to know.]</p></div>
+<section class="teams" aria-labelledby="teams-title">
+<h2 id="teams-title">People I’ve built with</h2>
+<div class="team-grid">
+<figure class="team">
+<div class="team-photo">[Team photo 1]</div>
+<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
+</figure>
+<figure class="team">
+<div class="team-photo">[Team photo 2]</div>
+<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
+</figure>
+<figure class="team">
+<div class="team-photo">[Team photo 3]</div>
+<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
+</figure>
+<figure class="team">
+<div class="team-photo">[Team photo 4]</div>
+<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
+</figure>
+</div>
+</section>
+<section class="latest" aria-labelledby="latest-title"><h2 id="latest-title">Latest Posts</h2><div id="latest-posts"></div></section>
+</section>
+<section id="blog" class="page" aria-labelledby="blog-title"><h1 id="blog-title">Blog</h1><div id="blog-posts"></div></section>
+<section id="projects" class="page" aria-labelledby="projects-title"><h1 id="projects-title">Projects</h1><div id="project-list"></div></section>
+</main>
+<footer><p>© 2026 <a href="#about">Sid</a></p></footer>
+<script>
+(() => {
+  document.body.classList.remove('no-js');
+  const pages = [...document.querySelectorAll('main > .page')];
+  const links = [...document.querySelectorAll('.nav-links a')];
+  function showPage(moveFocus) {
+    const requested = location.hash.slice(1) || 'about';
+    const current = pages.some(page => page.id === requested) ? requested : 'about';
+    pages.forEach(page => { page.hidden = page.id !== current; });
+    links.forEach(link => {
+      if (link.hash === '#' + current) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    if (moveFocus) {
+      const title = document.querySelector('#' + current + ' h1');
+      title.tabIndex = -1;
+      title.focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+  }
+  showPage(false);
+  addEventListener('hashchange', () => showPage(true));
+  const toggle = document.querySelector('.theme-toggle');
+  toggle.hidden = false;
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
+    toggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  }
+  let initial = 'light';
+  try { initial = localStorage.getItem('sid-theme') === 'dark' ? 'dark' : 'light'; } catch {}
+  setTheme(initial);
+  toggle.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(theme);
+    try { localStorage.setItem('sid-theme', theme); } catch {}
+  });
+})();
+</script>
+</body>
+</html>
