@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; background: var(--background); color: var(--foreground); font: 300 16px/24px "Iowan Old Style BT", Georgia, serif; }
-.container { width: 100%; max-width: 768px; margin: 0 auto; padding: 0 24px; }
+.container { width: 100%; max-width: 1088px; margin: 0 auto; padding: 0 clamp(24px, 4vw, 48px); }
 nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; gap: 24px; }
 .nav-links { display: flex; gap: 32px; }
 a { color: var(--accent); text-decoration: none; }
@@ -34,17 +34,27 @@ p { margin: 0 0 16px; }
 .intro-header p { margin: 0; }
 .profile { width: 224px; float: right; margin: 0 0 24px 24px; }
 .photo-placeholder { display: flex; justify-content: center; align-items: center; width: 224px; height: 224px; background: var(--photo); color: var(--muted); }
-.bio { min-height: 264px; }
+.bio { min-height: 248px; max-width: 64ch; }
 .placeholder { color: var(--muted); }
-.teams { clear: both; padding-top: 24px; padding-bottom: 32px; }
-.team-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
-.team { margin: 0; }
-.team-photo { aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; background: var(--photo); color: var(--muted); padding: 24px; text-align: center; }
-.team figcaption { margin-top: 12px; }
-.team figcaption p { margin: 4px 0 0; }
-.team-caption { color: var(--muted); font-size: 14px; line-height: 21px; }
-@media (max-width: 599px) { .team-grid { grid-template-columns: 1fr; } }
-.latest { clear: both; padding-top: 24px; padding-bottom: 24px; }
+.content-section { clear: both; padding-top: 48px; padding-bottom: 24px; }
+.content-section + .content-section { margin-top: 32px; }
+.story { margin: 0; }
+.story h3 { font-size: 23px; line-height: 30px; font-weight: 400; margin: 20px 0 8px; }
+.story p { max-width: 64ch; }
+.story-visual { background: var(--photo); padding: clamp(20px, 4vw, 48px); }
+.visual-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+.motion-chart { display: block; width: 100%; height: auto; color: var(--accent); }
+.motion-chart .bar { transform-box: fill-box; transform-origin: bottom; }
+.story-visual.is-playing .bar { animation: bar-change 3s ease-in-out infinite alternate; }
+.story-visual.is-playing .bar:nth-child(2n) { animation-delay: -.8s; }
+.story-visual.is-playing .bar:nth-child(3n) { animation-delay: -1.6s; }
+@keyframes bar-change { from { transform: scaleY(.45); } to { transform: scaleY(1); } }
+.visual-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 16px; font-size: 14px; color: var(--muted); }
+.motion-toggle { font: inherit; color: var(--foreground); background: var(--background); border: 1px solid var(--muted); border-radius: 0; padding: 7px 12px; cursor: pointer; }
+.motion-toggle:hover { border-color: var(--foreground); }
+.story-meta { font-size: 14px; color: var(--muted); margin-top: 14px; }
+.project-space { min-height: 64px; }
+@media (prefers-reduced-motion: reduce) { .story-visual.is-playing .bar { animation: none; } }
 footer { padding: 32px 24px; margin-top: 64px; text-align: center; color: var(--muted); font-size: 14px; line-height: 20px; }
 footer p { margin: 0; }
 .no-js .page + .page { margin-top: 48px; }
@@ -54,7 +64,7 @@ footer p { margin: 0; }
 <body class="no-js">
 <header class="container">
 <nav aria-label="Main navigation">
-<div class="nav-links"><a href="#about" aria-current="page">about</a><a href="#blog">blog</a><a href="#projects">projects</a></div>
+<div class="nav-links"><a href="#about" aria-current="page">about</a><a href="#writing">writing</a><a href="#projects">projects</a></div>
 <button class="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
 </button>
@@ -65,55 +75,54 @@ footer p { margin: 0; }
 <header class="intro-header"><h1 id="about-title"><strong>Sid</strong></h1><p class="placeholder">[Your one-line introduction]</p></header>
 <aside class="profile" aria-label="Profile photo placeholder"><div class="photo-placeholder">[Your photo]</div></aside>
 <div class="bio"><p class="placeholder">[Your bio: what you do, what you’re interested in, and anything you’d like visitors to know.]</p></div>
-<section class="teams" aria-labelledby="teams-title">
-<h2 id="teams-title">People I’ve built with</h2>
-<div class="team-grid">
-<figure class="team">
-<div class="team-photo">[Team photo 1]</div>
-<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
+</section>
+<section id="writing" class="content-section" aria-labelledby="writing-title">
+<h2 id="writing-title">Writing</h2>
+<div id="blog-posts">
+<article class="story">
+<figure class="story-visual" style="margin:0" aria-labelledby="preview-title preview-caption">
+<div class="visual-heading"><span id="preview-title">Animated visual placeholder</span><span>Illustration only · no real data</span></div>
+<svg class="motion-chart" viewBox="0 0 900 230" role="img" aria-label="Illustrative bars demonstrating the space for an animated data visualization. No real data is represented.">
+<path d="M0 215H900" stroke="currentColor" stroke-opacity=".25"/>
+<g fill="currentColor" fill-opacity=".65"><rect class="bar" x="45" y="130" width="65" height="85"/><rect class="bar" x="185" y="75" width="65" height="140"/><rect class="bar" x="325" y="105" width="65" height="110"/><rect class="bar" x="465" y="35" width="65" height="180"/><rect class="bar" x="605" y="65" width="65" height="150"/><rect class="bar" x="745" y="15" width="65" height="200"/></g>
+</svg>
+<figcaption id="preview-caption" class="visual-controls"><button class="motion-toggle" type="button" aria-pressed="false" hidden>Play preview</button><span>Layout preview, not a published story.</span></figcaption>
 </figure>
-<figure class="team">
-<div class="team-photo">[Team photo 2]</div>
-<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
-</figure>
-<figure class="team">
-<div class="team-photo">[Team photo 3]</div>
-<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
-</figure>
-<figure class="team">
-<div class="team-photo">[Team photo 4]</div>
-<figcaption><span class="placeholder">[Team name] — [event or project], [year]</span><p class="team-caption">[What we built together. Add teammates’ names and optional links.]</p></figcaption>
-</figure>
+<h3 class="placeholder">[Your first data story]</h3>
+<p class="placeholder">[A short introduction to the question your story investigates.]</p>
+<p class="story-meta">[Add your animation or interactive chart, source data, date, and article link.]</p>
+</article>
 </div>
 </section>
-<section class="latest" aria-labelledby="latest-title"><h2 id="latest-title">Latest Posts</h2><div id="latest-posts"></div></section>
-</section>
-<section id="blog" class="page" aria-labelledby="blog-title"><h1 id="blog-title">Blog</h1><div id="blog-posts"></div></section>
-<section id="projects" class="page" aria-labelledby="projects-title"><h1 id="projects-title">Projects</h1><div id="project-list"></div></section>
+<section id="projects" class="content-section" aria-labelledby="projects-title"><h2 id="projects-title">Projects</h2><div id="project-list" class="project-space"></div></section>
 </main>
 <footer><p>© 2026 <a href="#about">Sid</a></p></footer>
 <script>
 (() => {
   document.body.classList.remove('no-js');
-  const pages = [...document.querySelectorAll('main > .page')];
   const links = [...document.querySelectorAll('.nav-links a')];
-  function showPage(moveFocus) {
-    const requested = location.hash.slice(1) || 'about';
-    const current = pages.some(page => page.id === requested) ? requested : 'about';
-    pages.forEach(page => { page.hidden = page.id !== current; });
+  function updateNavigation() {
+    let current = location.hash.slice(1) || 'about';
+    if (current === 'blog') { location.replace('#writing'); return; }
     links.forEach(link => {
-      if (link.hash === '#' + current) link.setAttribute('aria-current', 'page');
+      if (link.hash === '#' + current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');
     });
-    if (moveFocus) {
-      const title = document.querySelector('#' + current + ' h1');
-      title.tabIndex = -1;
-      title.focus({ preventScroll: true });
-      window.scrollTo(0, 0);
-    }
   }
-  showPage(false);
-  addEventListener('hashchange', () => showPage(true));
+  updateNavigation();
+  addEventListener('hashchange', updateNavigation);
+  const motion = document.querySelector('.motion-toggle');
+  const visual = document.querySelector('.story-visual');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  motion.hidden = false;
+  function stopPreview() { visual.classList.remove('is-playing'); motion.textContent = 'Play preview'; motion.setAttribute('aria-pressed', 'false'); }
+  motion.addEventListener('click', () => {
+    if (visual.classList.contains('is-playing')) { stopPreview(); return; }
+    if (reduced.matches) { motion.textContent = 'Motion disabled by your device preference'; return; }
+    visual.classList.add('is-playing'); motion.textContent = 'Pause preview'; motion.setAttribute('aria-pressed', 'true');
+  });
+  reduced.addEventListener('change', stopPreview);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopPreview(); });
   const toggle = document.querySelector('.theme-toggle');
   toggle.hidden = false;
   function setTheme(theme) {
