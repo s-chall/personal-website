@@ -17,9 +17,9 @@ Visit http://localhost:8000.
 Edit `index.html` directly. No dependencies or build step are required.
 
 - Replace the bracketed introduction, bio, and profile photo placeholders.
-- Replace the clearly marked animated writing placeholder with your own data story. The existing bars are illustrative, not real data. The Play/Pause control demonstrates animation and respects reduced-motion preferences.
-- For real stories, include a title, short description, source data, date, and article link. Use responsive SVG, an interactive chart, or a video with controls and a static poster.
-- Add project entries inside the empty `#project-list` at the bottom. Add articles inside `#blog-posts`, replacing the layout preview.
+- Writing is a list in `#blog-posts`: each row has a small animated preview, title, and description. All entries are labeled placeholders; animations do not represent real data. Click a preview to play or pause. Only one plays at a time; reduced-motion preferences are respected.
+- Projects are listed beneath writing in `#project-list`. Each preview and title opens an accessible video placeholder dialog. No demo videos are included yet. Replace the shared placeholder with the selected project's video, using native `controls`, `playsinline`, and a poster; pause playback when the dialog closes.
+- Replace the bracketed article and project titles and descriptions with real content, and link titles to finished stories when available.
 - Navigation uses in-page anchors; old `#blog` links redirect to `#writing`.
 
 ## Hosting
